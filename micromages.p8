@@ -13,7 +13,7 @@ frm_time=0
 spr_flip=false
 cld_test=0
 
-accel = 0.5
+accel = 0.3
 -->8
 --update and draw
 function _update()
