@@ -41,7 +41,11 @@ function animate()
 	if (btn(0)) spr_flip=true
 	if (btn(1)) spr_flip=false
 
-	if(btn(0) or btn(1)) then
+	if (flr(dy) < 1 and not(hit(x, y+dy,w,h))) then 
+		frm=5
+	elseif (flr(dy) > 2 and not(hit(x, y+dy,w,h))) then
+	 frm=6
+	elseif(btn(0) or btn(1)) then
 		if time() - frm_time > .1 then
 			frm+=1
 			frm_time=time()
@@ -50,16 +54,16 @@ function animate()
 		if frm > 4 then
 			frm=0
 		end
-		
 	else
 		frm=0
 	end
 end
+
 -->8
 --basic moviment
 function control()
- if (btn(0) and dx > -1.5) dx -= accel 
- if (btn(1) and dx < 1.5) dx += accel 
+ if (btn(0)) dx -= accel 
+ if (btn(1)) dx += accel 
 
  if (btnp(4) and hit(x, y+dy,w,h))  dy-=8
  
@@ -79,6 +83,11 @@ function control()
  	cld_test=1
  else cld_test = 0
  end
+ 
+ if (dy > 16) dy=16
+ if (dy < -16) dy=-16
+ if (dx > 1.5) dx=1.5
+ if (dx < -1.5) dx=-1.5
  
  x+=dx 
 	y+=dy
